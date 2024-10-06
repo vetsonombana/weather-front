@@ -2,6 +2,7 @@ import { useState } from "react";
 import CurrentWeather from "../components/CurrentWeather";
 import WeatherService from "../services/weather/weather-service";
 import { CurrentWeatherData } from "../models/current";
+import { Link } from "react-router-dom";
 
 const CurrentWeatherPage = () => {
   const [currentWeather, setCurrentWeather] = useState<CurrentWeatherData>();
@@ -18,6 +19,7 @@ const CurrentWeatherPage = () => {
         currentWeather={currentWeather}
         searchCurrentWeather={searchCurrentWeather}
       />
+      <Link to="/forecast"> Forecast</Link>
     </>
   );
 };

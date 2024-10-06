@@ -10,12 +10,12 @@ import {
   TextField,
 } from "@mui/material";
 import { useState } from "react";
-import { ForecastWeatherData } from "../models/forecast";
+import { ForecastWeather as ForecastWeatherData } from "../models/forecast";
 
 const ForecastWeather: React.FC<{
   searchForecastWeather: Function;
-  forecastWeathers: ForecastWeatherData[] | null;
-}> = ({ searchForecastWeather, forecastWeathers }) => {
+  forecastWeather: ForecastWeatherData | null;
+}> = ({ searchForecastWeather, forecastWeather }) => {
   const [city, setCity] = useState("");
   return (
     <>
@@ -32,51 +32,43 @@ const ForecastWeather: React.FC<{
         <Button variant="contained" onClick={() => searchForecastWeather(city)}>
           Search
         </Button>
-        {forecastWeathers && (
-          <>
-            <h1> Results : </h1>
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>General evolution</TableCell>
-                    <TableCell align="right">Temperature trend</TableCell>
-                    <TableCell align="right">
-                      Barometric pressure trend
-                    </TableCell>
-                    <TableCell align="right">
-                      Average winds over the period
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {forecastWeathers &&
-                    forecastWeathers.map((forecastWeather, index) => (
-                      <TableRow
-                        key={index}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell component="th" scope="row">
-                          {forecastWeather?.temp}
-                        </TableCell>
-                        <TableCell align="right">
-                          {forecastWeather?.temp}
-                        </TableCell>
-                        <TableCell align="right">
-                          {forecastWeather?.temp}
-                        </TableCell>
-                        <TableCell align="right">
-                          {forecastWeather?.temp}
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </>
-        )}
+        <>
+          <h1> Results : </h1>
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>General evolution</TableCell>
+                  <TableCell align="right">Temperature trend</TableCell>
+                  <TableCell align="right">Barometric pressure trend</TableCell>
+                  <TableCell align="right">
+                    Average winds over the period
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow
+                  sx={{
+                    "&:last-child td, &:last-child th": { border: 0 },
+                  }}
+                >
+                  <TableCell component="th" scope="row">
+                    {forecastWeather?.general_trend}
+                  </TableCell>
+                  <TableCell align="right">
+                    {forecastWeather?.temperature_trend}
+                  </TableCell>
+                  <TableCell align="right">
+                    {forecastWeather?.pressure_trend}
+                  </TableCell>
+                  <TableCell align="right">
+                    {forecastWeather?.wind_speed_avg}
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </>
       </div>
     </>
   );

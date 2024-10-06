@@ -52,15 +52,17 @@ const CurrentWeather: React.FC<{
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell component="th" scope="row">
-                      {currentWeather?.weather?.description}
+                      {currentWeather?.description}
                     </TableCell>
                     <TableCell align="right">
-                      {currentWeather?.temp} °C
+                      {currentWeather?.temperature} °C
                     </TableCell>
                     <TableCell align="right">
-                      {currentWeather.wind_spd} Km/H
+                      {currentWeather?.wind_speed} Km/H
                     </TableCell>
-                    <TableCell align="right">{currentWeather.rh} %</TableCell>
+                    <TableCell align="right">
+                      {currentWeather?.humidity} %
+                    </TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
